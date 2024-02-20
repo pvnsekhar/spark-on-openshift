@@ -14,14 +14,7 @@ spec:
     spec:
       containers:
         - name: spark-master
-          image: spark-master:latest
-          ports:
-            - name: ui
-              containerPort: 8080
-              protocol: TCP
-            - name: master  
-              containerPort: 7077
-              protocol: TCP              
+          image: spark-master:latest            
           resources:
             requests:
               memory: "50Mi"
