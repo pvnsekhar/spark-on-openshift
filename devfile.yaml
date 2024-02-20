@@ -1,0 +1,53 @@
+schemaVersion: 2.2.0
+metadata:
+  name: Spark 
+  projectType: Spark  
+  displayName: Spark
+  language: Python
+  version: 1.0.1
+  provider: Red Hat
+  tags:
+    - Python
+    - spark
+  supportUrl: https://github.com/devfile-samples/devfile-support#support-information
+parent:
+  id: python
+  registryUrl: 'https://registry.devfile.io'
+components:
+  - name: image-build
+    image:
+      imageName: spark-master:latest
+      dockerfile:
+        uri: docker/Dockerfile
+        buildContext: .
+        rootRequired: false
+  - name: kubernetes-deploy
+    attributes:
+      deployment/replicas: 1
+      deployment/cpuRequest: 10m
+      deployment/memoryRequest: 50Mi
+      deployment/container-port: 8081
+    kubernetes:
+      uri: deploy.yaml
+      endpoints:
+        - name: http-8080
+          targetPort: 8080
+          secure: true
+        - name: http-7077
+          targetPort: 7077
+          secure: true          
+commands:
+  - id: build-image
+    apply:
+      component: image-build
+  - id: deployk8s
+    apply:
+      component: kubernetes-deploy
+  - id: deploy
+    composite:
+      commands:
+        - build-image
+        - deployk8s
+      group:
+        kind: deploy
+        isDefault: true

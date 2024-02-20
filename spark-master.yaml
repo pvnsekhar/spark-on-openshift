@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-master
+  template:
+    metadata:
+      labels:
+        app: spark-master
+    spec:
+      containers:
+        - name: spark-master
+          image: spark
+          command:
+            - "/opt/spark/sbin/start-master.sh"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-master
+spec:
+  selector:
+    app: spark-master
+  ports:
+    - protocol: TCP
+      port: 7077
+      targetPort: 7077
+      name: master
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: ui
+    - protocol: TCP
+      port: 6066
+      targetPort: 6066
+      name: rest
