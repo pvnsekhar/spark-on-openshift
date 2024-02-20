@@ -1,29 +1,29 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: Spark
+  name: spark
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: Spark
+      app: spark
   template:
     metadata:
       labels:
-        app: Spark
+        app: spark
     spec:
       containers:
         - name: spark-master
-          image: spark-master:latest            
+          image: spark:latest            
           resources:
             requests:
-              memory: "50Mi"
-              cpu: "10m"
+              memory: "50000Mi"
+              cpu: "10000m"
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: Spark
+  name: spark
 spec:
   ports:
     - name: http-8080
@@ -35,4 +35,4 @@ spec:
       protocol: TCP
       targetPort: 7077      
   selector:
-    app: Spark
+    app: spark

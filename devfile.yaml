@@ -1,13 +1,13 @@
 schemaVersion: 2.2.0
 metadata:
-  name: Spark 
-  projectType: Spark  
-  displayName: Spark
+  name: spark 
+  projectType: spark  
+  displayName: spark
   language: Python
-  version: 1.0.1
+  version: 1.0.0
   provider: Red Hat
   tags:
-    - Python
+    - python
     - spark
   supportUrl: https://github.com/devfile-samples/devfile-support#support-information
 components:
@@ -21,14 +21,17 @@ components:
   - name: kubernetes-deploy
     attributes:
       deployment/replicas: 1
-      deployment/cpuRequest: 10m
-      deployment/memoryRequest: 50Mi
+      deployment/cpuRequest: 10000m
+      deployment/memoryRequest: 50000Mi
     kubernetes:
       uri: deploy.yaml
       endpoints:
         - name: http-8080
           targetPort: 8080
-          secure: true      
+          secure: true
+        - name: http-7077 
+          targetPort: 7077
+          secure: true                  
 commands:
   - id: build-image
     apply:
