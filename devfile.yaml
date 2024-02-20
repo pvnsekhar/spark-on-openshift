@@ -10,9 +10,6 @@ metadata:
     - Python
     - spark
   supportUrl: https://github.com/devfile-samples/devfile-support#support-information
-parent:
-  id: python
-  registryUrl: 'https://registry.devfile.io'
 components:
   - name: image-build
     image:
@@ -31,10 +28,7 @@ components:
       endpoints:
         - name: http-8080
           targetPort: 8080
-          secure: true
-        - name: http-7077
-          targetPort: 7077
-          secure: true          
+          secure: true      
 commands:
   - id: build-image
     apply:
