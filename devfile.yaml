@@ -26,7 +26,6 @@ components:
       deployment/replicas: 1
       deployment/cpuRequest: 10m
       deployment/memoryRequest: 50Mi
-      deployment/container-port: 8081
     kubernetes:
       uri: deploy.yaml
       endpoints:
