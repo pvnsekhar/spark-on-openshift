@@ -1,6 +1,6 @@
 FROM openjdk:8-jre
 
-yum install -y procps
+RUN apt-get update && apt-get install -y procps
 
 # Download and install Apache Spark
 RUN wget https://downloads.apache.org/spark/spark-3.5.1/spark-3.5.1.tgz && \
