@@ -1,28 +1,15 @@
 schemaVersion: 2.2.0
 metadata:
   name: spark 
-  projectType: spark  
-  displayName: spark
-  language: Python
-  version: 1.0.0
-  provider: Red Hat
-  tags:
-    - python
-    - spark
-  supportUrl: https://github.com/devfile-samples/devfile-support#support-information
 components:
   - name: image-build
     image:
-      imageName: spark-master:latest
+      imageName: spark:latest
       dockerfile:
         uri: docker/Dockerfile
-        buildContext: .
-        rootRequired: false
   - name: kubernetes-deploy
     attributes:
       deployment/replicas: 1
-      deployment/cpuRequest: 1000m
-      deployment/memoryRequest: 1000Mi
     kubernetes:
       uri: deploy.yaml
       endpoints:

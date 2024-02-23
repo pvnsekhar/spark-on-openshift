@@ -13,12 +13,8 @@ spec:
         app: spark
     spec:
       containers:
-        - name: spark-master
+        - name: spark
           image: spark:latest            
-          resources:
-            requests:
-              memory: "1000Mi"
-              cpu: "1000m"
 ---
 kind: Service
 apiVersion: v1
