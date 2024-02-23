@@ -9,3 +9,5 @@ RUN wget https://downloads.apache.org/spark/spark-3.5.1/spark-3.5.1.tgz && \
 # Set Spark environment variables
 ENV SPARK_HOME /opt/spark
 ENV PATH $SPARK_HOME/bin:$PATH
+
+ENTRYPOINT [ "/opt/spark/sbin/start-master.sh" ]
