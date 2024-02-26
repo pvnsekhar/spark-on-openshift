@@ -186,8 +186,7 @@ jobs:
 
     - name: Print application URL
       env:
-        ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-        SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
+        ROUTE: spark-master-pvnsekhar-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com
       run: |
         [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
         echo
