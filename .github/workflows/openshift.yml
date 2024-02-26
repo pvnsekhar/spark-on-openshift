@@ -77,9 +77,6 @@ jobs:
       contents: read
       packages: write
 
-    outputs:
-      ROUTE: spark-master-pvnsekhar-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com
-
     steps:
     - name: Check for required secrets
       uses: actions/github-script@v6
@@ -183,15 +180,3 @@ jobs:
         image: ${{ steps.push-image.outputs.registry-path }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
-
-    - name: Print application URL
-      env:
-        ROUTE: spark-master-pvnsekhar-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com
-      run: |
-        [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
-        echo
-        echo "======================== Your application is available at: ========================"
-        echo ${{ env.ROUTE }}
-        echo "==================================================================================="
-        echo
-        echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
